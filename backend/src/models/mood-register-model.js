@@ -15,7 +15,7 @@ const getAll = async () => {
 const registerMood = async (mood) => {
   const date = new Date(Date.now()).toUTCString();
   const query =
-    'INSERT INTO mood_register (mood_id, mood_acronym, mood_description, mood_date) VALUES (@id, @acronym, @description, @date)';
+    'INSERT INTO mood_register (id, acronym, description, date) VALUES (@id, @acronym, @description, @date)';
 
   try {
     const pool = await connection;
@@ -33,7 +33,7 @@ const registerMood = async (mood) => {
 };
 
 const deleteMood = async (id) => {
-  const query = 'DELETE FROM mood_register WHERE mood_id = @id';
+  const query = 'DELETE FROM mood_register WHERE id = @id';
 
   try {
     const pool = await connection;
@@ -46,7 +46,7 @@ const deleteMood = async (id) => {
 
 const updateMood = async (id, mood) => {
   const query =
-    'UPDATE mood_register SET mood_acronym = @acronym, mood_description = @description WHERE mood_id = @id';
+    'UPDATE mood_register SET acronym = @acronym, description = @description WHERE id = @id';
 
   try {
     const pool = await connection;
