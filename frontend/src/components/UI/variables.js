@@ -1,0 +1,12 @@
+export const primaryColor = '#041833';
+export const secondaryColor = '#0a2c5a';
+export const tertiaryColor = '#08458f';
+export const fourthColor = '#1875E8';
+export const fifthColor = '#0493d4';
+export const mainFontColor = '#041833';
+export const pageFontColor = '#444444';
+export const whiteColor = '#FFF';
+export const greyColor = '#EAEAEA';
+export const blackColor = '#363031';
+export const mainFont = "'Raleway', sans-serif";
+export const secondaryFont = "'Roboto Flex', sans-serif;";
