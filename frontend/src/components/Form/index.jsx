@@ -50,13 +50,17 @@ export const Form = () => {
       />
       <Select id="select" className="form-select">
         <option value="">Selecione um humor</option>
-        {moods.map((mood) => (
-          <option key={mood.acronym} value={mood.name}>
-            {mood.name}
-          </option>
-        ))}
+        {moods &&
+          moods.length > 0 &&
+          moods.map((mood) => (
+            <option key={mood.acronym} value={mood.name}>
+              {mood.name}
+            </option>
+          ))}
       </Select>
-      <SubmitButton type="submit"><FaPlus size={12}/></SubmitButton>
+      <SubmitButton type="submit">
+        <FaPlus size={12} />
+      </SubmitButton>
     </FormWrapper>
   );
 };
