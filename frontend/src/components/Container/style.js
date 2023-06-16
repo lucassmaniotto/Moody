@@ -17,6 +17,8 @@ export const ContainerStyled = styled.main`
     justify-content: center;
     height: 50%;
     width: 95%;
+    max-width: 1086px;
+    max-height: 100vh;
     border: 1px solid ${greyColor};
     border-radius: 10px;
     background-color: ${whiteColor};

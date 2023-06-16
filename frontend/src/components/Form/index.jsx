@@ -23,6 +23,7 @@ export const Form = () => {
         onChange={handleChange}
       />
       <Select id="select" className="form-select">
+        <option value="0">Selecione</option>
         <option value="1">Feliz</option>
         <option value="2">2</option>
       </Select>
