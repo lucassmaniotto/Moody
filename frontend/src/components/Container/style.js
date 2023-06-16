@@ -16,7 +16,7 @@ export const ContainerStyled = styled.main`
     align-items: center;
     justify-content: center;
     height: 50%;
-    width: 95%;
+    width: 90%;
     max-width: 1086px;
     max-height: 100vh;
     border: 1px solid ${greyColor};

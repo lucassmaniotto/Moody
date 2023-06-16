@@ -10,7 +10,6 @@ import { blackColor } from './components/UI/variables';
 const H1 = styled.h1`
   color: ${blackColor};
   font-size: 2.5rem;
-  margin-bottom: 1rem;
 `;
 
 export const App = () => {

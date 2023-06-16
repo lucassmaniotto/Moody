@@ -24,7 +24,7 @@ export const ButtonStyled = styled.button`
     background-color: ${secondaryColor};
     border: 1px solid ${fourthColor};
     box-shadow: 0 0 3px .5px ${fifthColor};
-    color: #fff;
+    color: ${whiteColor};
   }
 
   &:focus {

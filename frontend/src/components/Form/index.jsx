@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { FormWrapper, TextArea, SubmitButton, Select } from './style';
+import { FaPlus } from 'react-icons/fa';
 
 export const Form = () => {
   const [textareaValue, setTextareaValue] = useState('');
@@ -27,7 +28,7 @@ export const Form = () => {
         <option value="1">Feliz</option>
         <option value="2">2</option>
       </Select>
-      <SubmitButton type="submit">+</SubmitButton>
+      <SubmitButton type="submit"><FaPlus size={12}/></SubmitButton>
     </FormWrapper>
   );
 };
