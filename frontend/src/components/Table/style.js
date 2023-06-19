@@ -24,7 +24,16 @@ export const TableHeaderCell = styled.th`
   text-align: left;
 `;
 
+export const TableBody = styled.tbody`
+  display: grid;
+  max-height: 500px;
+  overflow-y: auto;
+`;
+
 export const TableRow = styled.tr`
+  display: grid;
+  grid-template-columns: 1fr 5fr 2fr 1fr;
+  align-items: center;
   &:nth-child(even) {
     background-color: ${greyColor};
   }
@@ -39,7 +48,7 @@ export const TableDataCell = styled.td`
   }
 
   &.description {
-    width: 50%;
+    width: 98%;
     height: 100px;
     overflow: hidden;
     text-overflow: ellipsis;

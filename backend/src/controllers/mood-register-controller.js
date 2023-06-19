@@ -9,6 +9,15 @@ const getAll = async (req, res) => {
   }
 };
 
+const getLastId = async (req, res) => {
+  try {
+    const mood = await moodModel.getLastId();
+    return res.status(200).json(mood);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 const registerMood = async (req, res) => {
   try {
     const mood = await moodModel.registerMood(req.body);
@@ -43,6 +52,7 @@ const updateMood = async (req, res) => {
 
 module.exports = {
   getAll,
+  getLastId,
   registerMood,
   deleteMood,
   updateMood,

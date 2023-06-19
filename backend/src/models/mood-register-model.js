@@ -12,6 +12,18 @@ const getAll = async () => {
   }
 };
 
+const getLastId = async () => {
+  const query = 'SELECT TOP 1 id FROM mood_register ORDER BY id DESC';
+
+  try {
+    const pool = await connection;
+    const result = await pool.request().query(query);
+    return result.recordset;
+  } catch (error) {
+    throw new Error(`Error executing query: ${error}`);
+  }
+};
+
 const registerMood = async (mood) => {
   const date = new Date(Date.now()).toUTCString();
   const query =
@@ -64,6 +76,7 @@ const updateMood = async (id, mood) => {
 
 module.exports = {
   getAll,
+  getLastId,
   registerMood,
   deleteMood,
   updateMood,

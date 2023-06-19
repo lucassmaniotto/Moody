@@ -9,6 +9,7 @@ import { MdModeEditOutline } from 'react-icons/md';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
 
 import {
+  TableBody,
   TableDataCell,
   TableHeader,
   TableHeaderCell,
@@ -16,7 +17,7 @@ import {
   TableWrapper,
 } from './style.js';
 
-import './swal-custom.css';
+import '../UI/swal-custom.css';
 
 export const Table = () => {
   const [moods, setMoods] = useState([]);
@@ -63,16 +64,16 @@ export const Table = () => {
       title: 'Editar',
       html:
         '<div>' +
-          '<div class="div-select">' +
-            '<label for="humor">Humor:</label>' +
-            `<select id="humor" class="custom-select">${generateSelectOptions(
-              selectOptions
-            )}</select>` +
-          '</div>' +
-          '<div class="div-textarea">' +
-            '<label for="description" class="custom-label">Descrição:</label>' +
-            `<textarea id="description" class="custom-textarea"></textarea>` +
-          '</div>' +
+        '<div class="div-select">' +
+        '<label for="humor">Humor:</label>' +
+        `<select id="humor" class="custom-select">${generateSelectOptions(
+          selectOptions,
+        )}</select>` +
+        '</div>' +
+        '<div class="div-textarea">' +
+        '<label for="description" class="custom-label">Descrição:</label>' +
+        `<textarea id="description" class="custom-textarea"></textarea>` +
+        '</div>' +
         '</div>',
       focusConfirm: false,
       showCancelButton: true,
@@ -93,7 +94,9 @@ export const Table = () => {
 
   const generateSelectOptions = (options) => {
     return options
-      .map((option) => `<option value="${option.value}">${option.label}</option>`)
+      .map(
+        (option) => `<option value="${option.value}">${option.label}</option>`,
+      )
       .join('');
   };
 
@@ -111,8 +114,7 @@ export const Table = () => {
           <TableHeaderCell>Ações</TableHeaderCell>
         </TableRow>
       </TableHeader>
-
-      <tbody>
+      <TableBody>
         {moods &&
           moods.length > 0 &&
           moods.map((mood) => (
@@ -134,7 +136,7 @@ export const Table = () => {
               </TableDataCell>
             </TableRow>
           ))}
-      </tbody>
+      </TableBody>
     </TableWrapper>
   );
 };
