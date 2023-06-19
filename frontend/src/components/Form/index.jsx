@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import Swal from 'sweetalert2';
+import { getMoodOptions } from '../../services/api/getMoods';
+
+import { FaPlus } from 'react-icons/fa';
 
 import { FormWrapper, TextArea, SubmitButton, Select } from './style';
-import { FaPlus } from 'react-icons/fa';
 
 export const Form = () => {
   const [textareaValue, setTextareaValue] = useState('');
@@ -17,22 +18,8 @@ export const Form = () => {
     setTextareaValue(event.target.value);
   };
 
-  const fetchMoods = async () => {
-    try {
-      const response = await fetch('http://localhost:3333/moods');
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      Swal.fire({
-        icon: 'error',
-        title: 'API indisponível',
-        text: 'Ocorreu um erro ao buscar as opções. Por favor, tente novamente mais tarde.',
-      });
-    }
-  };
-
   const populateOptions = useCallback(async () => {
-    const moods = await fetchMoods();
+    const moods = await getMoodOptions();
     setMoods(moods);
   }, []);
 

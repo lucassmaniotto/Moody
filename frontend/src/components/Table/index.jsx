@@ -1,5 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { getMoodRegister } from '../../services/api/getMoodRegister';
+import { getMoodOptions } from '../../services/api/getMoods';
 import Swal from 'sweetalert2';
+
 import { Button } from '../Button/index';
 
 import { MdModeEditOutline } from 'react-icons/md';
@@ -13,50 +16,18 @@ import {
   TableWrapper,
 } from './style.js';
 
+import './swal-custom.css';
+
 export const Table = () => {
   const [moods, setMoods] = useState([]);
-
-  const handleEdit = () => {
-    Swal.fire({
-      title: 'Editar',
-      html:
-        '<select id="mood" class="swal2-select">' +
-        '  <option value="feliz">Feliz</option>' +
-        '  <option value="triste">Triste</option>' +
-        '  <option value="empolgado">Empolgado</option>' +
-        '  <option value="calmo">Calmo</option>' +
-        '</select>' +
-        '<textarea id="textarea" class="swal2-textarea"></textarea>',
-      focusConfirm: false,
-      showCancelButton: true,
-      confirmButtonText: 'Salvar',
-      cancelButtonText: 'Cancelar',
-      preConfirm: () => {
-        const textareaValue = Swal.getPopup().querySelector('#textarea').value;
-        const moodValue = Swal.getPopup().querySelector('#mood').value;
-        console.log('Texto:', textareaValue);
-        console.log('Humor selecionado:', moodValue);
-      },
-    });
-  };
-
-  const fetchMoods = async () => {
-    try {
-      const response = await fetch('http://localhost:3333/mood');
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      Swal.fire({
-        icon: 'error',
-        title: 'API indisponível',
-        text: 'Ocorreu um erro ao buscar os registros. Por favor, tente novamente mais tarde.',
-      });
-    }
-  };
+  const [moodOptions, setMoodOptions] = useState([]);
 
   const populateTable = useCallback(async () => {
-    const moods = await fetchMoods();
+    const moods = await getMoodRegister();
     setMoods(moods);
+
+    const moodOptions = await getMoodOptions();
+    setMoodOptions(moodOptions);
   }, []);
 
   const setEmojiByHumorAcronym = (acronym) => {
@@ -80,6 +51,50 @@ export const Table = () => {
       default:
         return '';
     }
+  };
+
+  const handleEdit = () => {
+    const selectOptions = moodOptions.map((option) => ({
+      value: option.acronym,
+      label: option.name,
+    }));
+
+    Swal.fire({
+      title: 'Editar',
+      html:
+        '<div>' +
+          '<div class="div-select">' +
+            '<label for="humor">Humor:</label>' +
+            `<select id="humor" class="custom-select">${generateSelectOptions(
+              selectOptions
+            )}</select>` +
+          '</div>' +
+          '<div class="div-textarea">' +
+            '<label for="description" class="custom-label">Descrição:</label>' +
+            `<textarea id="description" class="custom-textarea"></textarea>` +
+          '</div>' +
+        '</div>',
+      focusConfirm: false,
+      showCancelButton: true,
+      confirmButtonText: 'Salvar',
+      cancelButtonText: 'Cancelar',
+      customClass: {
+        confirmButton: 'custom-button-confim',
+        cancelButton: 'custom-button-cancel',
+      },
+      preConfirm: () => {
+        const humor = document.getElementById('humor').value;
+        const description = document.getElementById('description').value;
+
+        console.log(humor, description);
+      },
+    });
+  };
+
+  const generateSelectOptions = (options) => {
+    return options
+      .map((option) => `<option value="${option.value}">${option.label}</option>`)
+      .join('');
   };
 
   useEffect(() => {
