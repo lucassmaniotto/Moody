@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Crud } from './components/CRUD';
+import { Form } from './components/Form';
 import { Container } from './components/Container';
 
 import styled from 'styled-components';
@@ -15,7 +15,7 @@ export const App = () => {
   return (
     <Container>
       <H1>Moody ⛅</H1>
-      <Crud />
+      <Form />
     </Container>
   );
 };

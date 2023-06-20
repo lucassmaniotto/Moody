@@ -17,7 +17,7 @@ import {
 
 import '../UI/swal-custom.css';
 
-export const Crud = () => {
+export const Form = () => {
   const [moods, setMoods] = useState([]);
   const [moodOptionsSwal, setMoodOptionsSwal] = useState([]);
   const [moodOptions, setMoodOptions] = useState([]);
