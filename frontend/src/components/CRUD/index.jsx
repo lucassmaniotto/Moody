@@ -1,10 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 
-import { Button } from '../Button';
+import { Table } from '../Table';
 
-import { MdModeEditOutline } from 'react-icons/md';
-import { RiDeleteBin2Fill } from 'react-icons/ri';
 import { FaPlus } from 'react-icons/fa';
 
 import { getMoodRecord, getLastId } from '../../services/api/fetchMoodRecord';
@@ -15,12 +13,6 @@ import {
   TextArea,
   SubmitButton,
   Select,
-  TableBody,
-  TableDataCell,
-  TableHeader,
-  TableHeaderCell,
-  TableRow,
-  TableWrapper,
 } from './style.js';
 
 import '../UI/swal-custom.css';
@@ -183,39 +175,11 @@ export const Crud = () => {
           <FaPlus size={12} />
         </SubmitButton>
       </FormWrapper>
-      <TableWrapper>
-        <TableHeader>
-          <TableRow>
-            <TableHeaderCell>Humor</TableHeaderCell>
-            <TableHeaderCell>Descrição</TableHeaderCell>
-            <TableHeaderCell>Criado em</TableHeaderCell>
-            <TableHeaderCell>Ações</TableHeaderCell>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {moods &&
-            moods.length > 0 &&
-            moods.map((mood) => (
-              <TableRow key={mood.id}>
-                <TableDataCell className="humor">
-                  {setEmojiByHumorAcronym(mood.acronym)}
-                </TableDataCell>
-                <TableDataCell className="description">
-                  {mood.description}
-                </TableDataCell>
-                <TableDataCell>{mood.date}</TableDataCell>
-                <TableDataCell>
-                  <Button onClick={handleEdit}>
-                    <MdModeEditOutline size={18} />
-                  </Button>
-                  <Button>
-                    <RiDeleteBin2Fill size={18} />
-                  </Button>
-                </TableDataCell>
-              </TableRow>
-            ))}
-        </TableBody>
-      </TableWrapper>
+      <Table
+        moods={moods}
+        setEmojiByHumorAcronym={setEmojiByHumorAcronym}
+        handleEdit={handleEdit}
+      />
     </>
   );
 };
