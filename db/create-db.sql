@@ -15,16 +15,16 @@ INSERT INTO moods (acronym, name) VALUES
 ('SA', 'Triste'),
 ('SU', 'Surpreso');
 
-CREATE TABLE mood_register (
+CREATE TABLE mood_record (
     id INT NOT NULL,
     acronym VARCHAR(2) NOT NULL,
     description VARCHAR(200),
     date varchar(30) NOT NULL,
-    CONSTRAINT pk_mood_register_id PRIMARY KEY (id),
-    CONSTRAINT fk_mood_register_moods FOREIGN KEY (acronym) REFERENCES moods(acronym)
+    CONSTRAINT pk_mood_record_id PRIMARY KEY (id),
+    CONSTRAINT fk_mood_record_moods FOREIGN KEY (acronym) REFERENCES moods(acronym)
 )
 
-INSERT INTO mood_register (id, acronym, description, date)
+INSERT INTO mood_record (id, acronym, description, date)
 VALUES
   (1, 'NE', 'I don''t care if Monday''s blue', 'Mon, 19 Jun 2023 19:38:57 GMT'),
   (2, 'SA', 'Tuesday''s grey and Wednesday too', 'Mon, 19 Jun 2023 19:39:07 GMT'),
@@ -37,4 +37,4 @@ VALUES
 
 SELECT * FROM moods;
 
-SELECT * FROM mood_register;
+SELECT * FROM mood_record;

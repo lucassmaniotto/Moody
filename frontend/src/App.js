@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { Form } from './components/Form';
-import { Table } from './components/Table';
+import { Crud } from './components/CRUD';
 import { Container } from './components/Container';
 
 import styled from 'styled-components';
@@ -16,8 +15,7 @@ export const App = () => {
   return (
     <Container>
       <H1>Moody ⛅</H1>
-      <Form />
-      <Table />
+      <Crud />
     </Container>
   );
 };

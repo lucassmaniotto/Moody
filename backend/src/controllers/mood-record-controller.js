@@ -1,4 +1,4 @@
-const moodModel = require('../models/mood-register-model');
+const moodModel = require('../models/mood-record-model');
 
 const getAll = async (req, res) => {
   try {

@@ -1,6 +1,6 @@
 import Swal from 'sweetalert2';
 
-export const getMoodRegister = async () => {
+export const getMoodRecord = async () => {
   try {
     const response = await fetch('http://localhost:3333/mood');
     const data = await response.json();
@@ -27,4 +27,4 @@ export const getLastId = async () => {
       text: 'Ocorreu um erro ao buscar os registros. Por favor, tente novamente mais tarde.',
     });
   }
-}
+};
