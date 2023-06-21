@@ -62,3 +62,22 @@ export const deleteMoodRecord = async (id) => {
     });
   }
 };
+
+export const updateMoodRecord = async (id, moodRecord) => {
+  try {
+    const response = await fetch(`http://localhost:3333/mood/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(moodRecord),
+    });
+    return response;
+  } catch (error) {
+    Swal.fire({
+      icon: 'error',
+      title: 'API indisponível',
+      text: 'Ocorreu um erro ao buscar os registros. Por favor, tente novamente mais tarde.',
+    });
+  }
+}

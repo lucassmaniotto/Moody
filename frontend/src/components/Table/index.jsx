@@ -3,8 +3,9 @@ import Swal from 'sweetalert2';
 import { formatDate } from '../../util/formatDate';
 import { getMoodOptions } from '../../services/api/fetchMoods';
 import {
-  deleteMoodRecord,
   getMoodRecord,
+  deleteMoodRecord,
+  updateMoodRecord,
 } from '../../services/api/fetchMoodRecord';
 
 import { Button } from '../Button';
@@ -72,7 +73,7 @@ export const Table = ({ moods, setMoods, setEmojiByHumorAcronym }) => {
     });
   };
 
-  const handleEdit = () => {
+  const handleEdit = (id) => {
     const selectOptions = moodOptionsSwal.map((option) => ({
       value: option.acronym,
       label: option.name,
@@ -101,11 +102,35 @@ export const Table = ({ moods, setMoods, setEmojiByHumorAcronym }) => {
         confirmButton: 'custom-button-confim',
         cancelButton: 'custom-button-cancel',
       },
-      preConfirm: () => {
+      preConfirm: async () => {
         const humor = document.getElementById('humor').value;
         const description = document.getElementById('description').value;
 
-        console.log(humor, description);
+        const data = {
+          acronym: humor,
+          description: description,
+        };
+        await updateMoodRecord(id, data);
+        await reloadRecords();
+        if (data.acronym && data.description && data.description.length > 0) {
+          Swal.fire({
+            title: 'Sucesso!',
+            text: 'O registro foi atualizado com sucesso.',
+            icon: 'success',
+            customClass: {
+              confirmButton: 'custom-button-confim',
+            },
+          });
+        } else {
+          Swal.fire({
+            title: 'Erro!',
+            text: 'Os dados não foram atualizados. Informe os campos corretamente.',
+            icon: 'error',
+            customClass: {
+              confirmButton: 'custom-button-confim',
+            },
+          });
+        }
       },
     });
   };
@@ -145,7 +170,7 @@ export const Table = ({ moods, setMoods, setEmojiByHumorAcronym }) => {
               </TableDataCell>
               <TableDataCell>{formatDate(mood.date)}</TableDataCell>
               <TableDataCell>
-                <Button onClick={handleEdit}>
+                <Button onClick={() => handleEdit(mood.id)}>
                   <MdModeEditOutline size={18} />
                 </Button>
                 <Button onClick={() => handleDelete(mood.id)}>
