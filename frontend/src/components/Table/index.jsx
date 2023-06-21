@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatDate } from '../../util/formatDate';
 
 import { Button } from '../Button';
 
@@ -36,7 +37,7 @@ export const Table = ({ moods, setEmojiByHumorAcronym, handleEdit }) => {
               <TableDataCell className="description">
                 {mood.description}
               </TableDataCell>
-              <TableDataCell>{mood.date}</TableDataCell>
+              <TableDataCell>{formatDate(mood.date)}</TableDataCell>
               <TableDataCell>
                 <Button onClick={handleEdit}>
                   <MdModeEditOutline size={18} />

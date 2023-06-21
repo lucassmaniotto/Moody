@@ -32,7 +32,7 @@ export const TableBody = styled.tbody`
 
 export const TableRow = styled.tr`
   display: grid;
-  grid-template-columns: 1fr 5fr 2fr 1fr;
+  grid-template-columns: 1fr 3fr 2fr 1fr;
   align-items: center;
   &:nth-child(even) {
     background-color: ${greyColor};
