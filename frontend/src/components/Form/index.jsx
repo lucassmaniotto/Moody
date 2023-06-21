@@ -1,33 +1,28 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 
-import { Table } from '../Table';
-
-import { FaPlus } from 'react-icons/fa';
-
+import { getMoodOptions } from '../../services/api/fetchMoods';
 import {
   getMoodRecord,
   getNextIdtoRecord,
   postMoodRecord,
 } from '../../services/api/fetchMoodRecord';
-import { getMoodOptions } from '../../services/api/fetchMoods';
+
+import { Table } from '../Table';
+
+import { FaPlus } from 'react-icons/fa';
 
 import { FormWrapper, TextArea, SubmitButton, Select } from './style.js';
-
 import '../UI/swal-custom.css';
 
 export const Form = () => {
   const [moods, setMoods] = useState([]);
-  const [moodOptionsSwal, setMoodOptionsSwal] = useState([]);
   const [moodOptions, setMoodOptions] = useState([]);
   const [textareaValue, setTextareaValue] = useState('');
 
   const populateTable = useCallback(async () => {
     const fetchedMoods = await getMoodRecord();
     setMoods(fetchedMoods);
-
-    const fetchedMoodOptions = await getMoodOptions();
-    setMoodOptionsSwal(fetchedMoodOptions);
   }, []);
 
   const setEmojiByHumorAcronym = (acronym) => {
@@ -51,52 +46,6 @@ export const Form = () => {
       default:
         return '';
     }
-  };
-
-  const handleEdit = () => {
-    const selectOptions = moodOptionsSwal.map((option) => ({
-      value: option.acronym,
-      label: option.name,
-    }));
-
-    Swal.fire({
-      title: 'Editar',
-      html:
-        '<div>' +
-        '<div class="div-select">' +
-        '<label for="humor">Humor:</label>' +
-        `<select id="humor" class="custom-select">${generateSelectOptions(
-          selectOptions,
-        )}</select>` +
-        '</div>' +
-        '<div class="div-textarea">' +
-        '<label for="description" class="custom-label">Descrição:</label>' +
-        `<textarea id="description" class="custom-textarea"></textarea>` +
-        '</div>' +
-        '</div>',
-      focusConfirm: false,
-      showCancelButton: true,
-      confirmButtonText: 'Salvar',
-      cancelButtonText: 'Cancelar',
-      customClass: {
-        confirmButton: 'custom-button-confim',
-        cancelButton: 'custom-button-cancel',
-      },
-      preConfirm: () => {
-        const humor = document.getElementById('humor').value;
-        const description = document.getElementById('description').value;
-
-        console.log(humor, description);
-      },
-    });
-  };
-
-  const generateSelectOptions = (options) => {
-    return options
-      .map(
-        (option) => `<option value="${option.value}">${option.label}</option>`,
-      )
-      .join('');
   };
 
   const handleSubmit = async (event) => {
@@ -129,11 +78,11 @@ export const Form = () => {
         timer: 1500,
       });
       populateTable();
-    } else if (mood.description.length > 200 || mood.description === '') {
+    } else if (mood.description.length > 150 || mood.description === '') {
       Swal.fire({
         icon: 'error',
         title: 'Descrição inválida!',
-        text: 'A descrição é obrigatória e deve ter no máximo 200 caracteres.',
+        text: 'A descrição é obrigatória e deve ter no máximo 150 caracteres.',
       });
     } else {
       Swal.fire({
@@ -174,8 +123,8 @@ export const Form = () => {
       </FormWrapper>
       <Table
         moods={moods}
+        setMoods={setMoods}
         setEmojiByHumorAcronym={setEmojiByHumorAcronym}
-        handleEdit={handleEdit}
       />
     </>
   );

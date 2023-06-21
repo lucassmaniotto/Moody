@@ -18,7 +18,7 @@ INSERT INTO moods (acronym, name) VALUES
 CREATE TABLE mood_record (
     id INT NOT NULL,
     acronym VARCHAR(2) NOT NULL,
-    description VARCHAR(200) NOT NULL,
+    description VARCHAR(150) NOT NULL,
     date varchar(30) NOT NULL,
     CONSTRAINT pk_mood_record_id PRIMARY KEY (id),
     CONSTRAINT fk_mood_record_moods FOREIGN KEY (acronym) REFERENCES moods(acronym)

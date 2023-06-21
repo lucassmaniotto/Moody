@@ -13,7 +13,7 @@ const validateBody = (req, res, next) => {
       });
   }
 
-  if (body.acronym.length !== 2 || body.description.length > 200 || body.description.length < 5) {
+  if (body.acronym.length !== 2 || body.description.length > 150 || body.description.length < 1) {
     return res
       .status(400)
       .json({
