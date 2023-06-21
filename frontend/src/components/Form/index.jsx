@@ -5,15 +5,14 @@ import { Table } from '../Table';
 
 import { FaPlus } from 'react-icons/fa';
 
-import { getMoodRecord, getLastId } from '../../services/api/fetchMoodRecord';
+import {
+  getMoodRecord,
+  getNextIdtoRecord,
+  postMoodRecord,
+} from '../../services/api/fetchMoodRecord';
 import { getMoodOptions } from '../../services/api/fetchMoods';
 
-import {
-  FormWrapper,
-  TextArea,
-  SubmitButton,
-  Select,
-} from './style.js';
+import { FormWrapper, TextArea, SubmitButton, Select } from './style.js';
 
 import '../UI/swal-custom.css';
 
@@ -117,19 +116,11 @@ export const Form = () => {
 
   const addMood = useCallback(async () => {
     const mood = {
-      id: await getLastId(),
+      id: await getNextIdtoRecord(),
       acronym: document.getElementById('select').value,
       description: textareaValue,
     };
-
-    const response = await fetch('http://localhost:3333/mood', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(mood),
-    });
-
+    const response = await postMoodRecord(mood);
     if (response.status === 201) {
       Swal.fire({
         icon: 'success',
@@ -138,11 +129,17 @@ export const Form = () => {
         timer: 1500,
       });
       populateTable();
+    } else if (mood.description.length > 200 || mood.description === '') {
+      Swal.fire({
+        icon: 'error',
+        title: 'Descrição inválida!',
+        text: 'A descrição é obrigatória e deve ter no máximo 200 caracteres.',
+      });
     } else {
       Swal.fire({
         icon: 'error',
-        title: 'Oops...',
-        text: 'Algo deu errado!',
+        title: 'Seleção inválida!',
+        text: 'Selecione um humor para continuar.',
       });
     }
   }, [textareaValue, populateTable]);
