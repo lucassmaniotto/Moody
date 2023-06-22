@@ -54,3 +54,10 @@ export const TableDataCell = styled.td`
     text-overflow: ellipsis;
   }
 `;
+
+export const TableMessage = styled.td`
+  text-align: center;
+  font-size: 20px;
+  color: ${primaryColor};
+  margin: 20px;
+`;

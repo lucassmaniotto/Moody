@@ -18,6 +18,7 @@ import {
   TableDataCell,
   TableHeader,
   TableHeaderCell,
+  TableMessage,
   TableRow,
   TableWrapper,
 } from './style.js';
@@ -158,8 +159,7 @@ export const Table = ({ moods, setMoods, setEmojiByHumorAcronym }) => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {moods &&
-          moods.length > 0 &&
+        {moods && moods.length > 0 ? (
           moods.map((mood) => (
             <TableRow key={mood.id} id={mood.id}>
               <TableDataCell className="humor">
@@ -178,7 +178,12 @@ export const Table = ({ moods, setMoods, setEmojiByHumorAcronym }) => {
                 </Button>
               </TableDataCell>
             </TableRow>
-          ))}
+          ))
+        ) : (
+          <TableMessage>
+              Nenhum registro encontrado 😢
+          </TableMessage>
+        )}
       </TableBody>
     </TableWrapper>
   );
