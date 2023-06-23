@@ -7,6 +7,7 @@ export const mainFontColor = '#041833';
 export const pageFontColor = '#444444';
 export const whiteColor = '#FFF';
 export const greyColor = '#EAEAEA';
+export const darkGreyColor = '#ABABAB';
 export const blackColor = '#363031';
 export const mainFont = "'Raleway', sans-serif";
 export const secondaryFont = "'Roboto Flex', sans-serif;";

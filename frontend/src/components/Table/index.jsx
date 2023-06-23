@@ -27,8 +27,19 @@ export const Table = ({ moods, setMoods, setEmojiByHumorAcronym }) => {
   const [moodOptionsSwal, setMoodOptionsSwal] = useState([]);
 
   const populateSwalOptions = useCallback(async () => {
-    const fetchedMoodOptions = await getMoodOptions();
-    setMoodOptionsSwal(fetchedMoodOptions);
+    try{
+      const fetchedMoodOptions = await getMoodOptions();
+      setMoodOptionsSwal(fetchedMoodOptions);
+    } catch (error) {
+      Swal.fire({
+        title: 'Erro!',
+        text: 'Ocorreu um erro ao carregar as opções de humor.',
+        icon: 'error',
+        customClass: {
+          confirmButton: 'custom-button-confim',
+        },
+      });
+    }
   }, []);
 
   const reloadRecords = useCallback(async () => {
@@ -181,7 +192,7 @@ export const Table = ({ moods, setMoods, setEmojiByHumorAcronym }) => {
           ))
         ) : (
           <TableMessage>
-              Nenhum registro encontrado 😢
+            <td>Nenhum registro encontrado 😢</td>
           </TableMessage>
         )}
       </TableBody>

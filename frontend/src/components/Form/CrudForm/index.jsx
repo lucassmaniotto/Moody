@@ -1,19 +1,19 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 
-import { getMoodOptions } from '../../services/api/fetchMoods';
+import { getMoodOptions } from '../../../services/api/fetchMoods';
 import {
   getMoodRecord,
   getNextIdtoRecord,
   postMoodRecord,
-} from '../../services/api/fetchMoodRecord';
+} from '../../../services/api/fetchMoodRecord';
 
-import { Table } from '../Table';
+import { Table } from '../../Table';
 
 import { FaPlus } from 'react-icons/fa';
 
 import { FormWrapper, TextArea, SubmitButton, Select } from './style.js';
-import '../UI/swal-custom.css';
+import '../../UI/swal-custom.css';
 
 export const Form = () => {
   const [moods, setMoods] = useState([]);
@@ -21,8 +21,19 @@ export const Form = () => {
   const [textareaValue, setTextareaValue] = useState('');
 
   const populateTable = useCallback(async () => {
-    const fetchedMoods = await getMoodRecord();
-    setMoods(fetchedMoods);
+    try {
+      const fetchedMoods = await getMoodRecord();
+      setMoods(fetchedMoods);
+    } catch (error) {
+      Swal.fire({
+        title: 'Erro!',
+        text: 'Ocorreu um erro ao carregar os registros.',
+        icon: 'error',
+        customClass: {
+          confirmButton: 'custom-button-confim',
+        },
+      });
+    }
   }, []);
 
   const setEmojiByHumorAcronym = (acronym) => {
