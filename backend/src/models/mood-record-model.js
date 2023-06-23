@@ -27,13 +27,14 @@ const getLastId = async () => {
 const registerMood = async (mood) => {
   const date = new Date(Date.now()).toUTCString();
   const query =
-    'INSERT INTO mood_record (id, acronym, description, date) VALUES (@id, @acronym, @description, @date)';
+    'INSERT INTO mood_record (id, user_id, acronym, description, date) VALUES (@id, @user_id, @acronym, @description, @date)';
 
   try {
     const pool = await connection;
     const result = await pool
       .request()
       .input('id', mood.id)
+      .input('user_id', mood.user_id)
       .input('acronym', mood.acronym)
       .input('description', mood.description)
       .input('date', date)
