@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+import { UserContext } from '../../../context/User';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../../../services/api/fetchUsers';
 import Swal from 'sweetalert2';
@@ -12,8 +13,8 @@ import { StyledForm, StyledLink } from './style';
 import '../../UI/swal-custom.css';
 
 export const Form = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const { email, setEmail, password, setPassword, setId, setName } =
+    useContext(UserContext);
   const navigate = useNavigate();
 
   const handleEmailChange = ({ target }) => {
@@ -30,13 +31,15 @@ export const Form = () => {
       email,
       password,
     };
-    console.log(user);
     const response = await loginUser(user.email, user.password);
+    const userData = await response.json();
+    setId(userData.id);
+    setName(userData.name);
     if (response.status === 200) {
       navigate('/home');
     } else {
       Swal.fire({
-        icon: 'Error',
+        icon: 'error',
         title: 'Oops...',
         text: 'E-mail ou senha incorretos!',
         customClass: {
