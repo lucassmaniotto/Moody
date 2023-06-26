@@ -27,14 +27,7 @@ export const Form = () => {
       const fetchedMoods = await getMoodRecordByUserId(id);
       setMoods(fetchedMoods);
     } catch (error) {
-      Swal.fire({
-        title: 'Erro!',
-        text: 'Ocorreu um erro ao carregar os registros.',
-        icon: 'error',
-        customClass: {
-          confirmButton: 'custom-button-confim',
-        },
-      });
+      console.log(error);
     }
   }, [id]);
 
