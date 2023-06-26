@@ -45,6 +45,18 @@ const registerMood = async (mood) => {
   }
 };
 
+const getRecordById = async (id) => {
+  const query = `SELECT * FROM mood_record WHERE id = ${id}`;
+
+  try {
+    const pool = await connection;
+    const result = await pool.request().query(query);
+    return result.recordset;
+  } catch (error) {
+    throw new Error(`Error executing query: ${error}`);
+  }
+};
+
 const deleteMood = async (id) => {
   const query = 'DELETE FROM mood_record WHERE id = @id';
 
@@ -79,6 +91,7 @@ module.exports = {
   getLastId,
   getMoodById,
   registerMood,
+  getRecordById,
   deleteMood,
   updateMood,
 };

@@ -10,6 +10,7 @@ const router = express.Router();
 router.get('/mood/last-id', moodRecordController.getLastId);
 router.get('/mood/:id', moodRecordController.getMoodById);
 router.post('/mood', moodRecordMiddleware.validateBody, moodRecordController.registerMood);
+router.get('/mood/record/:id', moodRecordController.getRecordById);
 router.delete('/mood/:id', moodRecordController.deleteMood);
 router.put('/mood/:id', moodRecordMiddleware.validateBody, moodRecordController.updateMood);
 

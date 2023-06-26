@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 
 import { getMoodOptions } from '../../../services/api/fetchMoods';
 import {
-  getMoodRecordById,
+  getMoodRecordByUserId,
   getNextIdtoRecord,
   postMoodRecord,
 } from '../../../services/api/fetchMoodRecord';
@@ -24,7 +24,7 @@ export const Form = () => {
 
   const populateTable = useCallback(async () => {
     try {
-      const fetchedMoods = await getMoodRecordById(id);
+      const fetchedMoods = await getMoodRecordByUserId(id);
       setMoods(fetchedMoods);
     } catch (error) {
       Swal.fire({

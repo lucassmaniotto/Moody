@@ -1,6 +1,6 @@
 import { swalApiError } from '../../util/swalApiError';
 
-export const getMoodRecordById = async (id) => {
+export const getMoodRecordByUserId = async (id) => {
   const response = await fetch(`http://localhost:3333/mood/${id}`);
   const data = await response.json();
   if (response.status !== 200) {
@@ -61,3 +61,12 @@ export const updateMoodRecord = async (id, moodRecord) => {
     swalApiError();
   }
 }
+
+export const getMoodRecordById = async (id) => {
+  const response = await fetch(`http://localhost:3333/mood/record/${id}`);
+  const data = await response.json();
+  if (response.status !== 200) {
+    swalApiError();
+  }
+  return data[0];
+};

@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { formatDate } from '../../util/formatDate';
 import { getMoodOptions } from '../../services/api/fetchMoods';
 import {
+  getMoodRecordByUserId,
   getMoodRecordById,
   deleteMoodRecord,
   updateMoodRecord,
@@ -29,7 +30,7 @@ export const Table = ({ moods, setMoods, setEmojiByHumorAcronym }) => {
   const { id } = useContext(UserContext);
 
   const populateSwalOptions = useCallback(async () => {
-    try{
+    try {
       const fetchedMoodOptions = await getMoodOptions();
       setMoodOptionsSwal(fetchedMoodOptions);
     } catch (error) {
@@ -45,7 +46,7 @@ export const Table = ({ moods, setMoods, setEmojiByHumorAcronym }) => {
   }, []);
 
   const reloadRecords = useCallback(async () => {
-    const fetchedMoods = await getMoodRecordById(id);
+    const fetchedMoods = await getMoodRecordByUserId(id);
     setMoods(fetchedMoods);
   }, [setMoods, id]);
 
@@ -119,11 +120,20 @@ export const Table = ({ moods, setMoods, setEmojiByHumorAcronym }) => {
       preConfirm: async () => {
         const humor = document.getElementById('humor').value;
         const description = document.getElementById('description').value;
-
         const data = {
           acronym: humor,
           description: description,
         };
+
+        if (
+          description === undefined ||
+          description === null ||
+          description === ''
+        ) {
+          const currentRecord = await getMoodRecordById(id);
+          data.description = currentRecord.description;
+        }
+
         await updateMoodRecord(id, data);
         await reloadRecords();
         if (data.acronym && data.description && data.description.length > 0) {
