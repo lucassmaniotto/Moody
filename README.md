@@ -8,6 +8,9 @@ CRUD Fullstack desenvolvido em ReactJS, NodeJS e integração com Microsoft SQL 
 | :label: Tecnologias | javascript, html, css, styled-components, npm, react, node, express, mssql, insomnia, vercel
 | :rocket: URL         | https://moody-murex.vercel.app/
 
+![Banner](https://github.com/lucassmaniotto/Moody/assets/101435037/ad96402b-8b4a-43b2-9fcb-01a6b4ca617c.png#vitrinedev)
+
+
 ## Detalhes do projeto
 
 Moody é um projeto de sistema web que contém um CRUD (Create, Read, Update, Delete) de registro de humor diário, além de um sistema de login e registro de usuários. O projeto foi desenvolvido com o objetivo de colocar em prática os conhecimentos adquiridos em ReactJS (useState, useEffect, useContext, useNavigate), NodeJS (Express e integração com banco de dados) e Microsoft SQL Server.
