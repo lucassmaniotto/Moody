@@ -16,7 +16,7 @@ export const Home = () => {
     if (!id) {
       navigate('/', { replace: true });
       Swal.fire({
-        icon: 'error',
+        icon: 'warning',
         title: 'Acesso negado!',
         text: 'Você precisa estar logado para acessar essa página!',
         customClass: {
