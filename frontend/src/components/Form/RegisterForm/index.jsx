@@ -7,7 +7,6 @@ import Swal from 'sweetalert2';
 import { AiOutlineUser, AiOutlineMail } from 'react-icons/ai';
 import { MdOutlineLock } from 'react-icons/md';
 
-
 import { Input } from '../../Input';
 
 import { StyledForm } from './style';
@@ -38,9 +37,7 @@ export const Form = () => {
       password,
     };
     const response = await registerUser(user.name, user.email, user.password);
-    console.log(response);
     if (response.status === 201) {
-      console.log('foi' + response.status);
       Swal.fire({
         icon: 'success',
         title: 'Sucesso!',
@@ -57,8 +54,18 @@ export const Form = () => {
     if (response.status === 409) {
       Swal.fire({
         icon: 'error',
-        title: 'Oops...',
-        text: 'E-mail inválido! Tente novamente com outro e-mail.',
+        title: 'E-mail inválido!',
+        text: 'E-mail já cadastrado! Tente novamente com outro e-mail.',
+        customClass: {
+          confirmButton: 'custom-button-confim',
+        },
+      });
+    }
+    if (response.status === 400) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Formato de dados incorretos!',
+        text: 'Preencha todos os campos corretamente!',
         customClass: {
           confirmButton: 'custom-button-confim',
         },
@@ -81,7 +88,7 @@ export const Form = () => {
         <label htmlFor="email">E-mail</label>
         <Input
           icon={<AiOutlineMail size={20} />}
-          type="text"
+          type="email"
           placeholder="Escreva seu e-mail"
           onChange={handleEmailChange}
         />

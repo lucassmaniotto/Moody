@@ -30,9 +30,11 @@ export const DivTitle = styled.div `
 `;
 
 export const StyledLink = styled(Link)`
+  display: flex;
+  align-items: center;
   text-decoration: none;
   color: ${primaryColor};
-  font-size: 0.85rem;
+  font-size: 1rem;
   font-weight: 500;
   letter-spacing: 0.05rem;
   transition: color 0.3s ease-in-out;
@@ -40,5 +42,9 @@ export const StyledLink = styled(Link)`
 
   &:hover {
     text-decoration: underline;
+  }
+
+  svg {
+    margin-right: 0.5rem;
   }
 `;

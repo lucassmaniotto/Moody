@@ -31,6 +31,22 @@ export const Form = () => {
       email,
       password,
     };
+    if (
+      user.email === '' ||
+      user.password === '' ||
+      user.email === null ||
+      user.password === null
+    ) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro',
+        text: 'Dados não informados!',
+        customClass: {
+          confirmButton: 'custom-button-confim',
+        },
+      });
+      return;
+    }
     const response = await loginUser(user.email, user.password);
     const userData = await response.json();
     setId(userData.id);
@@ -57,7 +73,7 @@ export const Form = () => {
         <label htmlFor="email">E-mail</label>
         <Input
           icon={<AiOutlineMail size={20} />}
-          type="text"
+          type="email"
           placeholder="Escreva seu e-mail"
           onChange={handleEmailChange}
         />

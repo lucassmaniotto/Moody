@@ -1,4 +1,5 @@
 import React from 'react';
+import { BsArrowLeftCircle } from 'react-icons/bs';
 
 import {
   Container,
@@ -17,7 +18,10 @@ export const Register = () => {
           <H2>Registre-se nos campos do formulário abaixo:</H2>
         </DivTitle>
         <Form />
-        <StyledLink to="/">Já tem uma conta? Faça login</StyledLink>
+        <StyledLink to="/">
+          <BsArrowLeftCircle />
+          Já tem uma conta? Faça login
+        </StyledLink>
       </WrapStyled>
     </Container>
   );
