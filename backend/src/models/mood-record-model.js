@@ -1,7 +1,7 @@
 const connection = require('./connection-mssql');
 
-const getAll = async () => {
-  const query = 'SELECT * FROM mood_record';
+const getMoodById = async (id) => {
+  const query = `SELECT * FROM mood_record WHERE user_id = ${id}`;
 
   try {
     const pool = await connection;
@@ -27,17 +27,30 @@ const getLastId = async () => {
 const registerMood = async (mood) => {
   const date = new Date(Date.now()).toUTCString();
   const query =
-    'INSERT INTO mood_record (id, acronym, description, date) VALUES (@id, @acronym, @description, @date)';
+    'INSERT INTO mood_record (id, user_id, acronym, description, date) VALUES (@id, @user_id, @acronym, @description, @date)';
 
   try {
     const pool = await connection;
     const result = await pool
       .request()
       .input('id', mood.id)
+      .input('user_id', mood.user_id)
       .input('acronym', mood.acronym)
       .input('description', mood.description)
       .input('date', date)
       .query(query);
+    return result.recordset;
+  } catch (error) {
+    throw new Error(`Error executing query: ${error}`);
+  }
+};
+
+const getRecordById = async (id) => {
+  const query = `SELECT * FROM mood_record WHERE id = ${id}`;
+
+  try {
+    const pool = await connection;
+    const result = await pool.request().query(query);
     return result.recordset;
   } catch (error) {
     throw new Error(`Error executing query: ${error}`);
@@ -75,9 +88,10 @@ const updateMood = async (id, mood) => {
 };
 
 module.exports = {
-  getAll,
   getLastId,
+  getMoodById,
   registerMood,
+  getRecordById,
   deleteMood,
   updateMood,
 };

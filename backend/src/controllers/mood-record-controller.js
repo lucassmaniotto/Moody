@@ -1,17 +1,18 @@
 const moodModel = require('../models/mood-record-model');
 
-const getAll = async (req, res) => {
+const getLastId = async (req, res) => {
   try {
-    const mood = await moodModel.getAll();
+    const mood = await moodModel.getLastId();
     return res.status(200).json(mood);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
 
-const getLastId = async (req, res) => {
+const getMoodById = async (req, res) => {
   try {
-    const mood = await moodModel.getLastId();
+    const { id } = req.params;
+    const mood = await moodModel.getMoodById(id);
     return res.status(200).json(mood);
   } catch (error) {
     return res.status(500).json({ message: error.message });
@@ -25,6 +26,16 @@ const registerMood = async (req, res) => {
       .status(201)
       .json({ message: 'Mood registered successfully!' })
       .json(mood);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+const getRecordById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const mood = await moodModel.getRecordById(id);
+    return res.status(200).json(mood);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
@@ -51,9 +62,10 @@ const updateMood = async (req, res) => {
 };
 
 module.exports = {
-  getAll,
   getLastId,
+  getMoodById,
   registerMood,
+  getRecordById,
   deleteMood,
   updateMood,
 };

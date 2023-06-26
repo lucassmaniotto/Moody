@@ -1,16 +1,7 @@
 import styled from 'styled-components';
-import { secondaryColor, greyColor, whiteColor } from '../UI/variables';
+import { greyColor, whiteColor } from '../../components/UI/variables';
 
-export const ContainerStyled = styled.main`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  width: 100%;
-  background-color: ${secondaryColor};
-
-  div {
+export const WrapStyled = styled.div `
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,5 +14,4 @@ export const ContainerStyled = styled.main`
     background-color: ${whiteColor};
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
     padding: 2rem 0;
-  }
 `;

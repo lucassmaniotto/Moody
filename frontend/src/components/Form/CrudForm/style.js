@@ -4,7 +4,7 @@ import {
   fifthColor,
   whiteColor,
   greyColor,
-} from '../UI/variables';
+} from '../../UI/variables';
 
 export const FormWrapper = styled.form`
   display: flex;

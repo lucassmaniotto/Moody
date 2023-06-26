@@ -1,9 +1,5 @@
 import styled from 'styled-components';
-import {
-  primaryColor,
-  whiteColor,
-  greyColor,
-} from '../UI/variables';
+import { primaryColor, whiteColor, greyColor } from '../UI/variables';
 
 export const TableWrapper = styled.table`
   width: 90%;
@@ -55,9 +51,16 @@ export const TableDataCell = styled.td`
   }
 `;
 
-export const TableMessage = styled.td`
-  text-align: center;
-  font-size: 20px;
-  color: ${primaryColor};
-  margin: 20px;
+export const TableMessage = styled.tr`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 225px 0;
+  
+  td {
+    text-align: center;
+    font-size: 20px;
+    color: ${primaryColor};
+  }
 `;

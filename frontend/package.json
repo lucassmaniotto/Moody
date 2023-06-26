@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
@@ -10,6 +10,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.9.0",
+    "react-router-dom": "^6.13.0",
     "react-scripts": "5.0.1",
     "styled-components": "^6.0.0-rc.3",
     "sweetalert2": "^11.7.12"

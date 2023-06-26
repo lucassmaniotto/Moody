@@ -1,29 +1,35 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useContext } from 'react';
+import { UserContext } from '../../../context/User';
 import Swal from 'sweetalert2';
 
-import { getMoodOptions } from '../../services/api/fetchMoods';
+import { getMoodOptions } from '../../../services/api/fetchMoods';
 import {
-  getMoodRecord,
+  getMoodRecordByUserId,
   getNextIdtoRecord,
   postMoodRecord,
-} from '../../services/api/fetchMoodRecord';
+} from '../../../services/api/fetchMoodRecord';
 
-import { Table } from '../Table';
+import { Table } from '../../Table';
 
 import { FaPlus } from 'react-icons/fa';
 
 import { FormWrapper, TextArea, SubmitButton, Select } from './style.js';
-import '../UI/swal-custom.css';
+import '../../UI/swal-custom.css';
 
 export const Form = () => {
   const [moods, setMoods] = useState([]);
   const [moodOptions, setMoodOptions] = useState([]);
   const [textareaValue, setTextareaValue] = useState('');
+  const { id } = useContext(UserContext);
 
   const populateTable = useCallback(async () => {
-    const fetchedMoods = await getMoodRecord();
-    setMoods(fetchedMoods);
-  }, []);
+    try {
+      const fetchedMoods = await getMoodRecordByUserId(id);
+      setMoods(fetchedMoods);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [id]);
 
   const setEmojiByHumorAcronym = (acronym) => {
     switch (acronym) {
@@ -66,6 +72,7 @@ export const Form = () => {
   const addMood = useCallback(async () => {
     const mood = {
       id: await getNextIdtoRecord(),
+      user_id: id,
       acronym: document.getElementById('select').value,
       description: textareaValue,
     };
@@ -84,14 +91,25 @@ export const Form = () => {
         title: 'Descrição inválida!',
         text: 'A descrição é obrigatória e deve ter no máximo 150 caracteres.',
       });
-    } else {
+    } else if (
+      mood.acronym === '' ||
+      mood.acronym === undefined ||
+      mood.acronym === null ||
+      mood.acronym === 'Selecione um humor'
+    ) {
       Swal.fire({
         icon: 'error',
         title: 'Seleção inválida!',
         text: 'Selecione um humor para continuar.',
       });
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro de serviço!',
+        text: 'Ocorreu um erro ao cadastrar o humor. Tente novamente mais tarde.',
+      });
     }
-  }, [textareaValue, populateTable]);
+  }, [textareaValue, populateTable, id]);
 
   useEffect(() => {
     populateTable();
