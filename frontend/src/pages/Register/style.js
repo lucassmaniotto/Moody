@@ -29,7 +29,7 @@ export const DivTitle = styled.div `
   }
 `;
 
-export const StyledLink = styled(Link)`
+export const StyledRegisterLink = styled(Link)`
   display: flex;
   align-items: center;
   text-decoration: none;

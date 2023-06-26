@@ -1,3 +1,5 @@
+import { swalApiError } from "../../util/swalApiError";
+
 export const loginUser = async (email, password) => {
   try {
     const response = await fetch('http://localhost:3333/user/login', {
@@ -7,7 +9,7 @@ export const loginUser = async (email, password) => {
     });
     return response;
   } catch (error) {
-    console.log(error);
+    swalApiError();
   }
 };
 
@@ -20,6 +22,6 @@ export const registerUser = async (name, email, password) => {
     });
     return response;
   } catch (error) {
-    console.log(error);
+    swalApiError();
   }
 }

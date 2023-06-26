@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { blackColor, primaryColor, secondaryColor, tertiaryColor, whiteColor } from '../../UI/variables';
 
@@ -36,21 +35,5 @@ export const StyledForm = styled.form`
       cursor: pointer;
       background: linear-gradient(240deg, ${primaryColor} 0%, ${secondaryColor} 100%);
     }
-  }
-`;
-
-
-export const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: ${primaryColor};
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.05rem;
-  transition: color 0.3s ease-in-out;
-  align-self: flex-end;
-  margin: 1rem 0 2rem 0;
-
-  &:hover {
-    text-decoration: underline;
   }
 `;

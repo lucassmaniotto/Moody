@@ -1,4 +1,4 @@
-import Swal from 'sweetalert2';
+import { swalApiError } from "../../util/swalApiError";
 
 export const getMoodOptions = async () => {
   try {
@@ -6,10 +6,6 @@ export const getMoodOptions = async () => {
     const data = await response.json();
     return data;
   } catch (error) {
-    Swal.fire({
-      icon: 'error',
-      title: 'API indisponível',
-      text: 'Ocorreu um erro ao buscar as opções. Por favor, tente novamente mais tarde.',
-    });
+    swalApiError();
   }
 };

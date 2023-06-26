@@ -6,7 +6,7 @@ import {
   H1,
   H2,
 } from '../../components/UI/shared/styled-components';
-import { DivTitle, WrapStyled, StyledLink } from './style';
+import { DivTitle, WrapStyled, StyledRegisterLink } from './style';
 import { Form } from '../../components/Form/RegisterForm';
 
 export const Register = () => {
@@ -18,10 +18,10 @@ export const Register = () => {
           <H2>Registre-se nos campos do formulário abaixo:</H2>
         </DivTitle>
         <Form />
-        <StyledLink to="/">
+        <StyledRegisterLink to="/">
           <BsArrowLeftCircle />
           Já tem uma conta? Faça login
-        </StyledLink>
+        </StyledRegisterLink>
       </WrapStyled>
     </Container>
   );

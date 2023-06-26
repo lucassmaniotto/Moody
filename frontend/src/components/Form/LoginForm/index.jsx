@@ -9,7 +9,7 @@ import { MdOutlineLock } from 'react-icons/md';
 
 import { Input } from '../../Input';
 
-import { StyledForm, StyledLink } from './style';
+import { StyledForm } from './style';
 import '../../UI/swal-custom.css';
 
 export const Form = () => {
@@ -87,7 +87,6 @@ export const Form = () => {
           onChange={handlePasswordChange}
         />
       </div>
-      <StyledLink to="/forgot-password">Esqueceu sua senha?</StyledLink>
       <button type="submit" onClick={handleSubmit}>
         Entrar
       </button>
