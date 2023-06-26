@@ -18,6 +18,16 @@ const getLastId = async (req, res) => {
   }
 };
 
+const getMoodById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const mood = await moodModel.getMoodById(id);
+    return res.status(200).json(mood);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 const registerMood = async (req, res) => {
   try {
     const mood = await moodModel.registerMood(req.body);
@@ -53,6 +63,7 @@ const updateMood = async (req, res) => {
 module.exports = {
   getAll,
   getLastId,
+  getMoodById,
   registerMood,
   deleteMood,
   updateMood,

@@ -1,7 +1,7 @@
 import Swal from 'sweetalert2';
 
-export const getMoodRecord = async () => {
-  const response = await fetch('http://localhost:3333/mood');
+export const getMoodRecordById = async (id) => {
+  const response = await fetch(`http://localhost:3333/mood/${id}`);
   const data = await response.json();
   if (response.status !== 200) {
     Swal.fire({

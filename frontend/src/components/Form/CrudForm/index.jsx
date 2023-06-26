@@ -1,9 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useContext } from 'react';
+import { UserContext } from '../../../context/User';
 import Swal from 'sweetalert2';
 
 import { getMoodOptions } from '../../../services/api/fetchMoods';
 import {
-  getMoodRecord,
+  getMoodRecordById,
   getNextIdtoRecord,
   postMoodRecord,
 } from '../../../services/api/fetchMoodRecord';
@@ -19,10 +20,11 @@ export const Form = () => {
   const [moods, setMoods] = useState([]);
   const [moodOptions, setMoodOptions] = useState([]);
   const [textareaValue, setTextareaValue] = useState('');
+  const { id } = useContext(UserContext);
 
   const populateTable = useCallback(async () => {
     try {
-      const fetchedMoods = await getMoodRecord();
+      const fetchedMoods = await getMoodRecordById(id);
       setMoods(fetchedMoods);
     } catch (error) {
       Swal.fire({
@@ -34,7 +36,7 @@ export const Form = () => {
         },
       });
     }
-  }, []);
+  }, [id]);
 
   const setEmojiByHumorAcronym = (acronym) => {
     switch (acronym) {

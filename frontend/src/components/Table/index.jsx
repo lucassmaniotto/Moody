@@ -1,9 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useContext } from 'react';
+import { UserContext } from '../../context/User';
 import Swal from 'sweetalert2';
 import { formatDate } from '../../util/formatDate';
 import { getMoodOptions } from '../../services/api/fetchMoods';
 import {
-  getMoodRecord,
+  getMoodRecordById,
   deleteMoodRecord,
   updateMoodRecord,
 } from '../../services/api/fetchMoodRecord';
@@ -25,6 +26,7 @@ import {
 
 export const Table = ({ moods, setMoods, setEmojiByHumorAcronym }) => {
   const [moodOptionsSwal, setMoodOptionsSwal] = useState([]);
+  const { id } = useContext(UserContext);
 
   const populateSwalOptions = useCallback(async () => {
     try{
@@ -43,9 +45,9 @@ export const Table = ({ moods, setMoods, setEmojiByHumorAcronym }) => {
   }, []);
 
   const reloadRecords = useCallback(async () => {
-    const fetchedMoods = await getMoodRecord();
+    const fetchedMoods = await getMoodRecordById(id);
     setMoods(fetchedMoods);
-  }, [setMoods]);
+  }, [setMoods, id]);
 
   const handleDelete = async (id) => {
     Swal.fire({
