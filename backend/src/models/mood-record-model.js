@@ -1,17 +1,5 @@
 const connection = require('./connection-mssql');
 
-const getAll = async () => {
-  const query = 'SELECT * FROM mood_record';
-
-  try {
-    const pool = await connection;
-    const result = await pool.request().query(query);
-    return result.recordset;
-  } catch (error) {
-    throw new Error(`Error executing query: ${error}`);
-  }
-};
-
 const getMoodById = async (id) => {
   const query = `SELECT * FROM mood_record WHERE user_id = ${id}`;
 
@@ -88,7 +76,6 @@ const updateMood = async (id, mood) => {
 };
 
 module.exports = {
-  getAll,
   getLastId,
   getMoodById,
   registerMood,

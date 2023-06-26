@@ -1,14 +1,5 @@
 const moodModel = require('../models/mood-record-model');
 
-const getAll = async (req, res) => {
-  try {
-    const mood = await moodModel.getAll();
-    return res.status(200).json(mood);
-  } catch (error) {
-    return res.status(500).json({ message: error.message });
-  }
-};
-
 const getLastId = async (req, res) => {
   try {
     const mood = await moodModel.getLastId();
@@ -61,7 +52,6 @@ const updateMood = async (req, res) => {
 };
 
 module.exports = {
-  getAll,
   getLastId,
   getMoodById,
   registerMood,
