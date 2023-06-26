@@ -3,6 +3,7 @@ import { GlobalStyle } from './components/GlobalStyle';
 import { UserProvider } from './context/User';
 import { Login } from './pages/Login';
 import { Home } from './pages/Home';
+import { Register } from './pages/Register';
 
 function AppRoutes() {
   return (
@@ -13,6 +14,7 @@ function AppRoutes() {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/home" element={<Home/>} />
+            <Route path="/register" element={<Register />} />
             <Route path="*" element={<h1>Not Found</h1>} />
           </Routes>
         </UserProvider>

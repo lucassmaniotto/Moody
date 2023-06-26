@@ -16,6 +16,7 @@ export const H1 = styled.h1`
   font-size: 2.5rem;
   font-weight: 500;
   line-height: 1.5;
+  word-wrap: break-word;
 `;
 
 export const H2 = styled.h2`
