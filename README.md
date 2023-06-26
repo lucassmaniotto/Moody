@@ -10,8 +10,7 @@ CRUD Fullstack desenvolvido em ReactJS, NodeJS e integração com Microsoft SQL 
 
 ## Detalhes do projeto
 
-Moody é um projeto de sistema web que contém um CRUD (Create, Read, Update, Delete) de registro de humor diário, além de um sistema de login e registro de usuários. O projeto foi desenvolvido com o objetivo de colocar em prática os conhecimentos adquiridos em ReactJS e NodeJS, além de integração com banco de dados Microsoft SQL Server. Conforme o usuário realiza o login, ele é redirecionado para a página de registro de humor diário, onde ele pode registrar seu humor diário, além de visualizar os registros anteriores. O usuário também pode editar e excluir seus registros.
-
+Moody é um projeto de sistema web que contém um CRUD (Create, Read, Update, Delete) de registro de humor diário, além de um sistema de login e registro de usuários. O projeto foi desenvolvido com o objetivo de colocar em prática os conhecimentos adquiridos em ReactJS (useState, useEffect, useContext, useNavigate), NodeJS (Express e integração com banco de dados) e Microsoft SQL Server.
 ### ⚙️ Configurando o projeto
 O projeto foi desenvolvido com o gerenciador de pacotes [npm](https://www.npmjs.com/), portanto, para executar o projeto é necessário ter o Node instalado no seu computador. Para instalar as dependências do projeto, execute o comando abaixo nos diretórios `Moody/frontend` e `Moody/backend`:
 
