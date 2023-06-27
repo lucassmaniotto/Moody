@@ -1,7 +1,7 @@
-INSERT INTO
+INSERT INTO -- A senha do usuário teste é "123@123"
   users (name, email, password)
 VALUES
-  ('Robert Smith', 'the.cure@gmail.com', '123456');
+  ('Robert Smith', 'the.cure@gmail.com', '$2b$10$5tDfFtlcZa3vwKe8Y1c2jeOMFBh2hAWLIJgv./brEYxNVvfx.2H7a');
 
 INSERT INTO moods (acronym, name) VALUES
 ('AN', 'Com raiva'),
