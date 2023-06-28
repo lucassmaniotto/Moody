@@ -50,12 +50,17 @@ Com o comando acima, você irá rodar o projeto em modo de desenvolvimento que p
   * [react-icons](https://www.npmjs.com/package/react-icons)
   * [styled-components](https://www.npmjs.com/package/styled-components)
   * [sweetalert2](https://www.npmjs.com/package/sweetalert2)
+  * [eslint](https://www.npmjs.com/package/eslint#installation-and-usage)
+  * [prettier](https://prettier.io/)
 
 * Backend
   * [express](https://www.npmjs.com/package/express)
+  * [nodemon](https://www.npmjs.com/package/nodemon)
   * [mssql](https://www.npmjs.com/package/mssql)
   * [cors](https://www.npmjs.com/package/cors)
   * [dotenv](https://www.npmjs.com/package/dotenv)
   * [bcrypt](https://www.npmjs.com/package/bcrypt)
+  * [eslint](https://www.npmjs.com/package/eslint#installation-and-usage)
+  * [prettier](https://prettier.io/)
 
 ### 💡 Funcionalidades
