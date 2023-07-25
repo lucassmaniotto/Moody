@@ -68,9 +68,15 @@ Com o comando acima, você irá rodar o projeto em modo de desenvolvimento que p
 #### Login e registro de usuários
 O Moody conta com um formulário de registro e login de usuários, onde o usuário pode se cadastrar e fazer login para acessar o sistema. Para o registro de usuários, é necessário informar um nome, um e-mail e uma senha e os dados são enviados para a API que os insere no banco de dados. Para o login, é necessário informar o e-mail e a senha e os dados são enviados para a API que verifica se o usuário existe e se a senha está correta. Caso o usuário não exista ou a senha esteja incorreta, o usuário é informado com uma mensagem de erro.
 
+![Login](https://github.com/lucassmaniotto/Moody/assets/101435037/672dbd02-8e64-4d0b-a913-9c96fffc49a7)
+
+![Registro](https://github.com/lucassmaniotto/Moody/assets/101435037/ae951289-db0b-4c3d-8e5b-8fff67abf879)
+
 Quando o usuário entra no sistema, é utilizado o Context API do React para armazenar seu ID e nome, e assim listar os registros vinculados ao seu código. Caso o usuário não possua nenhum registro, é exibido uma mensagem informando que não há registros vinculados ao seu usuário dentro da tabela.
 
 ![Robert Smith](https://github.com/lucassmaniotto/Moody/assets/101435037/ad96402b-8b4a-43b2-9fcb-01a6b4ca617c.png)
+
+![No data](https://github.com/lucassmaniotto/Moody/assets/101435037/ae966fda-df25-4b6c-a95c-4d6cb4e5b7c2)
 
 **OBS:** O sistema não possui um sistema de recuperação de senha, não está implementado a funcionalidade de autenticação e as validações de login são feitas apenas com o Context API do React.
 
@@ -78,6 +84,8 @@ Quando o usuário entra no sistema, é utilizado o Context API do React para arm
 O Moody conta com um CRUD de humor, onde o usuário pode registrar seu humor diário. Para isso, o usuário deve informar um tipo de humor já pré-cadastrado no banco de dados e uma descrição. Quando inserido os dados são salvos no banco de dados e inseridos na tabela, onde o tipo de humor é exibido com um emoji representando seu humor, a descrição e a data na qual foi cadastrado o humor. O usuário também pode editar e excluir um humor já cadastrado.
 
 As ações de editar e excluir um humor podem ser realizadas na coluna "Ações" da tabela.
+
+![Modal](https://github.com/lucassmaniotto/Moody/assets/101435037/dd50f1d4-07f0-4b86-8d2b-80e1e504415f)
 
 Para editar um humor, o usuário deve clicar no botão de editar e preencher no modal do SweetAlert2 os dados que deseja alterar. Quando o usuário clica em salvar, os dados são enviados para a API que atualiza os dados no banco de dados e na tabela.
 
