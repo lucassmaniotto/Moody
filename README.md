@@ -64,3 +64,21 @@ Com o comando acima, você irá rodar o projeto em modo de desenvolvimento que p
   * [prettier](https://prettier.io/)
 
 ### 💡 Funcionalidades
+
+#### Login e registro de usuários
+O Moody conta com um formulário de registro e login de usuários, onde o usuário pode se cadastrar e fazer login para acessar o sistema. Para o registro de usuários, é necessário informar um nome, um e-mail e uma senha e os dados são enviados para a API que os insere no banco de dados. Para o login, é necessário informar o e-mail e a senha e os dados são enviados para a API que verifica se o usuário existe e se a senha está correta. Caso o usuário não exista ou a senha esteja incorreta, o usuário é informado com uma mensagem de erro.
+
+Quando o usuário entra no sistema, é utilizado o Context API do React para armazenar seu ID e nome, e assim listar os registros vinculados ao seu código. Caso o usuário não possua nenhum registro, é exibido uma mensagem informando que não há registros vinculados ao seu usuário dentro da tabela.
+
+![Robert Smith](https://github.com/lucassmaniotto/Moody/assets/101435037/ad96402b-8b4a-43b2-9fcb-01a6b4ca617c.png)
+
+**OBS:** O sistema não possui um sistema de recuperação de senha, não está implementado a funcionalidade de autenticação e as validações de login são feitas apenas com o Context API do React.
+
+#### CRUD de humor
+O Moody conta com um CRUD de humor, onde o usuário pode registrar seu humor diário. Para isso, o usuário deve informar um tipo de humor já pré-cadastrado no banco de dados e uma descrição. Quando inserido os dados são salvos no banco de dados e inseridos na tabela, onde o tipo de humor é exibido com um emoji representando seu humor, a descrição e a data na qual foi cadastrado o humor. O usuário também pode editar e excluir um humor já cadastrado.
+
+As ações de editar e excluir um humor podem ser realizadas na coluna "Ações" da tabela.
+
+Para editar um humor, o usuário deve clicar no botão de editar e preencher no modal do SweetAlert2 os dados que deseja alterar. Quando o usuário clica em salvar, os dados são enviados para a API que atualiza os dados no banco de dados e na tabela.
+
+Casos o usuário queira excluir um humor, ele deve clicar no botão de excluir e confirmar a exclusão no modal do SweetAlert2. Quando o usuário confirma a exclusão, os dados são enviados para a API que exclui os dados do banco de dados e da tabela.
